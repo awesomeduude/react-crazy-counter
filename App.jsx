@@ -22,7 +22,7 @@ class App extends Component {
   generateNBtns = n => {
     const btns = []
 
-    for(let i=0; i<= n; i++) {
+    for(let i=1; i<= n; i++) {
       const multiplier = i*this.state.isPositive
       btns.push(
         <button key={multiplier} onClick={() => {this.handleMultiplyByN(multiplier)} }>
