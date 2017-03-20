@@ -12,16 +12,23 @@ class App extends Component {
     super(props)
     this.state = {
       value: 10,
-      numBtns: 10
+      numBtns: 10,
+      isPositive: 1 //1 is true, -1 is false
     }
   }
-  handleMultiplyByN = (n) => {
+  handleMultiplyByN = n => {
     this.setState(multiplyBy(n))
   }
   generateNBtns = n => {
     const btns = []
+
     for(let i=0; i<= n; i++) {
-      btns.push(<button key={i} onClick={() => {this.handleMultiplyByN(i)}}>x{i}</button>)
+      const multiplier = i*this.state.isPositive
+      btns.push(
+        <button key={multiplier} onClick={() => {this.handleMultiplyByN(multiplier)} }>
+          x{multiplier}
+        </button>
+      )
     }
     return btns
   }
@@ -29,7 +36,11 @@ class App extends Component {
     this.setState({value:10})
   }
   handleInputChange = e => {
-    this.setState({numBtns: Math.abs(e.target.value)})
+    const isPositive = e.target.value >= 0 ? 1 : -1
+    this.setState({
+      numBtns: Math.abs(e.target.value),
+      isPositive
+    })
   }
   render() {
     return (
