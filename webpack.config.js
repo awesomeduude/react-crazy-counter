@@ -1,6 +1,5 @@
 var path = require('path')
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: [
@@ -14,8 +13,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('style.css')
+    new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     loaders: [
@@ -25,7 +23,7 @@ module.exports = {
         exclude: /node_modules/,
         query: {
           presets: ['es2015', 'react'],
-          plugins: ["transform-decorators-legacy", "transform-class-properties"]
+          plugins: ["transform-class-properties"]
         }
       }
     ]
